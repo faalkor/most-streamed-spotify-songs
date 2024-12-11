@@ -11,7 +11,7 @@ st.markdown("# Músicas mais tocadas no Spotify (2024)")
 
 
 # Map
-with open('app\countrys.json') as f:
+with open('app/countrys.json') as f:
     countrysJson = json.load(f)
     m = folium.Map(location=[20, 0], zoom_start=2)
     folium.GeoJson(
