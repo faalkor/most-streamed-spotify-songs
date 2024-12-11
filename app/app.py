@@ -35,7 +35,7 @@ with open(country_path) as f:
 
 
 # Dataset encoding detect
-dataset = 'mostStreamedSpotifySongs2024.csv'
+dataset = os.path.join(os.getcwd(), 'app', 'mostStreamedSpotifySongs2024.csv')
 
 with open(dataset, 'rb') as f:
     result = chardet.detect(f.read())
