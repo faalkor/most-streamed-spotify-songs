@@ -3,7 +3,15 @@ import folium
 import json
 import pandas as pd
 import chardet
+import os
 from graph import graph
+
+country_path = os.path.join(os.getcwd(), 'app', 'countrys.json')
+
+if os.path.exists(country_path):
+    st.write(f"O arquivo existe: {country_path}")
+else:
+    print(f"Erro: O arquivo não foi encontrado em {country_path}")
 
 
 # Header
@@ -11,7 +19,7 @@ st.markdown("# Músicas mais tocadas no Spotify (2024)")
 
 
 # Map
-with open('app/countrys.json') as f:
+with open(country_path) as f:
     countrysJson = json.load(f)
     m = folium.Map(location=[20, 0], zoom_start=2)
     folium.GeoJson(
