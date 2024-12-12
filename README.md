@@ -12,8 +12,8 @@ This project aims to analyze data about songs streamed on various platforms in 2
 
 ---
 
-**PT-BR:** 
 ## ⚙️ Passos / Steps
+**PT-BR:** 
 
 ### Instalar dependências:
 Execute o comando:
@@ -33,7 +33,6 @@ pip freeze > requirements.txt
 ```
 
 ---
-
 
 **EN:**  
 
