@@ -34,10 +34,8 @@ pip freeze > requirements.txt
 
 ---
 
-**EN:**  
-# This project aims to analyze data about songs streamed on various platforms in 2024, with a focus on Spotify.
 
-## Steps:
+**EN:**  
 
 ### Install dependencies
 Run the following command:
