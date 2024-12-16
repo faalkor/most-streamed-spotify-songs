@@ -5,6 +5,7 @@ import pandas as pd
 import chardet
 import os
 from graph import graph
+from graph import aroundStreamings
 import matplotlib.pyplot as plt
 
 
@@ -25,10 +26,12 @@ df = pd.read_csv(dataset, encoding=result['encoding'])
 st.write(df)
 
 
-# Graphs
+# Top viewed songs
 st.markdown("### Músicas mais populares")
 graph(df)
 
+# Popularidade por Streaming
+aroundStreamings(df)
 
 # Tabela de contagem de artistas
 st.markdown("## Artistas e Frequência de Aparição")

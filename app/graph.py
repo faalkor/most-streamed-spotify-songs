@@ -2,11 +2,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
-def graph(data):                                                                                    # radio stations
-    # streamings = ['Spotify Streams', 'YouTube Views', 'TikTok Posts', 'Apple Music Playlist Count', 'AirPlay Spins']
-    streamings = ['Spotify Streams', 'YouTube Views', 'TikTok Posts']
-    
-        
+def graph(data):                                                                                    # radio stations       
     # Remove dataset commas and convert to int
     data['Spotify Streams'] = pd.to_numeric(data['Spotify Streams'].str.replace(',', ''), errors='coerce').fillna(0).astype(int)
 
@@ -18,6 +14,10 @@ def graph(data):                                                                
     top_data = data.sort_values('Spotify Streams', ascending=False).head(slider_num)
     st.write(top_data)
 
+
+def aroundStreamings(data):
+    streamings = ['Spotify Streams', 'YouTube Views', 'TikTok Posts', 'Apple Music Playlist Count', 'AirPlay Spins']
+    data['Spotify Streams'] = pd.to_numeric(data['Spotify Streams'].str.replace(',', ''), errors='coerce').fillna(0).astype(int)
 
     # Stats of number 1 song
     values = pd.to_numeric(top_data[streamings].iloc[0].astype(str).str.replace(',', ''), errors='coerce').fillna(0).astype(int)
