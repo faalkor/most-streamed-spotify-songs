@@ -4,7 +4,7 @@ import json
 import pandas as pd
 import chardet
 import os
-import graph
+from graph import graph, aroundStreamings
 import matplotlib.pyplot as plt
 
 
