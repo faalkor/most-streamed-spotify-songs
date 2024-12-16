@@ -12,6 +12,11 @@ def graph(data):                                                                
     # sort data
     slider_num = st.slider("Selecione o número de faixas a visualizar:", 1, num_songs, min(10, num_songs))
     top_data = data.sort_values('Spotify Streams', ascending=False).head(slider_num)
+
+    # ranking index
+    top_data.reset_index(drop=True, inplace=True)
+    top_data.index += 1
+    
     st.write(top_data)
 
 
