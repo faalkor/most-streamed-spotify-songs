@@ -30,6 +30,7 @@ st.markdown("### Músicas mais populares")
 graph(df)
 
 # Popularidade por Streaming
+st.markdown("### Popularidade por Streaming")
 aroundStreamings(df)
 
 # Tabela de contagem de artistas
