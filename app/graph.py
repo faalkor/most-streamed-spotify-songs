@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
-def graph(data):                                                                                    # radio stations       
+def graph(data):                                                                                           
     # Remove dataset commas and convert to int
     data['Spotify Streams'] = pd.to_numeric(data['Spotify Streams'].str.replace(',', ''), errors='coerce').fillna(0).astype(int)
 
@@ -38,6 +38,4 @@ def aroundStreamings(data):
     ax.pie(values, labels=streamings, autopct='%1.1f%%', startangle=90)
     ax.axis('equal') 
 
-
-    # Plotagem do graph
     st.pyplot(fig)
