@@ -16,6 +16,11 @@ def graph(data):                                                                
     # ranking index
     top_data.reset_index(drop=True, inplace=True)
     top_data.index = range(1, len(top_data) + 1)
+
+    # definir coluns
+    columns = ['Track', 'Artist','Release Date', 'Spotify Streams', 'YouTube Views',
+                'TikTok Views', 'AirPlay Spins', 'Pandora Streams', 'Soundcloud Streams', 'Shazam Counts']
+    top_data = top_data[columns]
     
     st.write(top_data)
 
