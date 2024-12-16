@@ -15,7 +15,7 @@ def graph(data):                                                                
 
     # ranking index
     top_data.reset_index(drop=True, inplace=True)
-    top_data.index += 1
+    top_data.index = range(1, len(top_data) + 1)
     
     st.write(top_data)
 
