@@ -28,6 +28,7 @@ st.write(df)
 st.markdown("### Músicas mais populares")
 graph(df)
 
+
 # Tabela de contagem de artistas
 st.markdown("## Artistas e Frequência de Aparição")
 

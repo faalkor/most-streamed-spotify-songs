@@ -10,10 +10,12 @@ def graph(data):                                                                
     # Remove dataset commas and convert to int
     data['Spotify Streams'] = pd.to_numeric(data['Spotify Streams'].str.replace(',', ''), errors='coerce').fillna(0).astype(int)
 
+    # total
+    num_songs = len(data)
 
-    # interest data
-    song_num = st.slider("Selecione o número de faixas a visualizar:", 1, 10, 5)
-    top_data = data.sort_values('Spotify Streams', ascending=False).head(song_num)
+    # sort data
+    slider_num = st.slider("Selecione o número de faixas a visualizar:", 1, num_songs, min(10, num_songs))
+    top_data = data.sort_values('Spotify Streams', ascending=False).head(slider_num)
     st.write(top_data)
 
 
