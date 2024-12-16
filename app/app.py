@@ -14,7 +14,6 @@ st.markdown("# Músicas mais tocadas no Spotify (2024)")
 
 # Dataset encoding detect
 dataset = os.path.join(os.getcwd(), 'app', 'mostStreamedSpotifySongs2024.csv')
-
 with open(dataset, 'rb') as f:
     result = chardet.detect(f.read())
 
@@ -26,7 +25,7 @@ st.write(df)
 
 
 # Graphs
-st.markdown("### Popularidade por streaming")
+st.markdown("### Músicas mais populares")
 graph(df)
 
 # Tabela de contagem de artistas
