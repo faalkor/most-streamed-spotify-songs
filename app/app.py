@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 
 
 # Header
-st.markdown("# Músicas mais tocadas no Spotify (2024)")
+st.markdown("# Músicas mais tocadas (2024)")
 
 
 # Dataset encoding detect
