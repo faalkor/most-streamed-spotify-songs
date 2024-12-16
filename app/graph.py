@@ -21,6 +21,8 @@ def aroundStreamings(data):
     #data['Spotify Streams'] = pd.to_numeric(data['Spotify Streams'].str.replace(',', ''), errors='coerce').fillna(0).astype(int)
 
     # Stats of number 1 song
+    top_data = data.sort_values('Spotify Streams', ascending=False)
+
     values = pd.to_numeric(top_data[streamings].iloc[0].astype(str).str.replace(',', ''), errors='coerce').fillna(0).astype(int)
 
     fig, ax = plt.subplots()
