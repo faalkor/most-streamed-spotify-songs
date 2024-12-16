@@ -9,7 +9,8 @@ import matplotlib.pyplot as plt
 
 
 # Header
-st.markdown("# Músicas mais tocadas (2024)")
+st.markdown("<h1 style='text-align: center;'># Músicas mais tocadas (2024)</h1>", unsafe_allow_html=True)
+
 
 
 # Dataset encoding detect
