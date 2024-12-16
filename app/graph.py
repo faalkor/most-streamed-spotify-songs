@@ -6,6 +6,11 @@ def graph(data):                                                                
     # Remove dataset commas and convert to int
     data['Spotify Streams'] = pd.to_numeric(data['Spotify Streams'].str.replace(',', ''), errors='coerce').fillna(0).astype(int)
 
+    # definir colunas
+    columns = ['Track', 'Artist','Release Date', 'Spotify Streams', 'YouTube Views',
+                'TikTok Views', 'AirPlay Spins', 'Pandora Streams', 'Soundcloud Streams', 'Shazam Counts']
+    top_data = top_data[columns]
+
     # total
     num_songs = len(data)
 
@@ -17,10 +22,7 @@ def graph(data):                                                                
     top_data.reset_index(drop=True, inplace=True)
     top_data.index = range(1, len(top_data) + 1)
 
-    # definir coluns
-    columns = ['Track', 'Artist','Release Date', 'Spotify Streams', 'YouTube Views',
-                'TikTok Views', 'AirPlay Spins', 'Pandora Streams', 'Soundcloud Streams', 'Shazam Counts']
-    top_data = top_data[columns]
+    
     
     st.write(top_data)
 
