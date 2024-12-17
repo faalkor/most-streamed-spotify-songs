@@ -31,12 +31,13 @@ def aroundStreamings(data):
 
     # Verificar se os streamings existem no dataset
     if not set(streamings).issubset(data.columns):
-        raise ValueError("Algum streaming especificado nao existe no dataset :(")
+        st.write(f"Algumas colunas não existem no dataset: {set(streamings) - set(data.columns)}")
+        return
     
     # Quantidade de músicas por streaming
     count = {}
     for streaming in streamings:
-        count[streaming] = data[streaming].sum()
+        count[streaming] = data[streaming].notna().sum()
     st.write(count)
 
     fig, ax = plt.subplots()
