@@ -72,4 +72,6 @@ with col1:
     st.pyplot(fig)
 
 with col2:
+    year_count.sort_values('Year', ascending=False)
+
     st.dataframe(year_count)
