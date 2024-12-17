@@ -74,4 +74,4 @@ with col1:
 
 
 with col2:
-    st.dataframe(year_count)
+    st.dataframe(year_count, use_container_width=True)
