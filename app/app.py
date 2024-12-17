@@ -70,9 +70,7 @@ with col1:
     ax.set_ylabel("Quantidade de Músicas")
     ax.set_title("Lançamentos de Músicas por Ano")
     plt.xticks(rotation=45)  # Rotaciona os anos para melhorar a visualização
-    st.pyplot(fig)   
-
+    st.pyplot(fig)    
 
 with col2:
-    year_count_reset = year_count.reset_index(drop=True)
-    st.table(year_count_reset, use_container_width=True)
+    st.dataframe(year_count.style.hide(axis="index"))
