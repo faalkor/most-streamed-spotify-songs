@@ -52,3 +52,12 @@ def aroundStreamings(data):
     plt.xticks(rotation=45)
 
     st.pyplot(fig)
+
+
+def artistCount(data):
+    artist_count = data['Artist'].value_counts().reset_index()
+    artist_count.index = range(1, len(artist_count) + 1)
+    artist_count.columns = ['Artista', 'Quantidade de Aparição']
+
+    # Exibir a tabela no dashboard  
+    st.dataframe(artist_count)

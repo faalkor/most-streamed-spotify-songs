@@ -4,7 +4,7 @@ import json
 import pandas as pd
 import chardet
 import os
-from graph import graph, aroundStreamings
+from graph import graph, aroundStreamings, artistCount
 import matplotlib.pyplot as plt
 
 
@@ -35,15 +35,7 @@ aroundStreamings(df)
 
 # Tabela de contagem de artistas
 st.markdown("## Artistas e Frequência de Aparição")
-
-# Contar a quantidade de vezes que cada artista aparece
-artist_count = df['Artist'].value_counts().reset_index()
-artist_count.index = range(1, len(artist_count) + 1)
-artist_count.columns = ['Artista', 'Quantidade de Aparição']
-
-# Exibir a tabela no dashboard
-st.dataframe(artist_count)
-
+artistCount(df)
 
 # Layout em colunas
 col1, col2 = st.columns(2)
