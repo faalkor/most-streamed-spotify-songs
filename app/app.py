@@ -71,6 +71,8 @@ with col1:
     plt.xticks(rotation=45)  # Rotaciona os anos para melhorar a visualização
     st.pyplot(fig)
 
-    year_count.sort_values('Year', ascending=False)
+    df['Year'] = pd.to_numeric(df['Year'].str.replace(',', ''), errors='coerce').fillna(0).astype(int)
+    df.sort_values('Year', ascending=False)
+
 with col2:
     st.dataframe(year_count)
