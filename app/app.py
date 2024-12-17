@@ -73,5 +73,5 @@ with col1:
     st.pyplot(fig)    
 
 with col2:
-    # year_count_reset = year_count.reset_index(drop=True)
-    st.dataframe(year_count[['Year', 'Count']], use_container_width=True)
+    year_count_reset = year_count.reset_index(drop=True)
+    st.dataframe(year_count_reset[['Year', 'Count']])
