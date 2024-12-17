@@ -74,7 +74,7 @@ with col1:
     #df['Year'] = pd.to_numeric(df['Year'].str.replace(',', ''), errors='coerce').fillna(0).astype(int)
     #df.sort_values('Year', ascending=False)
     st.write(df)
-    st.write(df['Year'])
+    st.write(df['Year'].sort_values('Year', ascending=False))
     
 
 with col2:
