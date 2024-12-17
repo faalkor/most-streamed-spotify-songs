@@ -39,7 +39,7 @@ def aroundStreamings(data):
     
     # Quantidade de músicas por streaming
     for streaming in streamings:
-        data_clean[streaming] = pd.to_numeric(data_clean[streaming], errors='coerce')
+        data_clean[streaming] = pd.to_numeric(data_clean[streaming], errors='coerce').fillna(0)
 
     count = {streaming: data_clean[streaming].sum() for streaming in streamings}
     st.write(count)
