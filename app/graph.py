@@ -27,7 +27,7 @@ def graph(data):
 
 
 def aroundStreamings(data):
-    streamings = ['Spotify Streams', 'YouTube Views', 'TikTok Posts', 'Apple Music Playlist Count', 'AirPlay Spins']
+    streamings = ['Spotify Streams', 'YouTube Views', 'TikTok Posts', 'Shazam Counts', 'AirPlay Spins']
 
     # Verificar se os streamings existem no dataset
     if not set(streamings).issubset(data.columns):
@@ -37,6 +37,7 @@ def aroundStreamings(data):
     count = {}
     for streaming in streamings:
         count[streaming] = data[streaming].notna().sum()
+    st.write(count)
 
     fig, ax = plt.subplots()
     ax.bar(count.keys(), count.values(), color="skyblue")
