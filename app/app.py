@@ -74,4 +74,5 @@ with col1:
 
 
 with col2:
-    st.dataframe(year_count, use_container_width=True)
+    year_count_reset = year_count.reset_index(drop=True)
+    st.dataframe(year_count_reset, use_container_width=True)
