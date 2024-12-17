@@ -29,13 +29,21 @@ def graph(data):
 def aroundStreamings(data):
     streamings = ['Spotify Streams', 'YouTube Views', 'TikTok Posts', 'Apple Music Playlist Count', 'AirPlay Spins']
     
+    # Quantidade de músicas por streaming
+    for streaming in streamings:
+        df = data[streaming].count().reset_index()
+        st.write(df)
+        df.columns = ['Streaming', 'Count']
+        count = df[streaming].value_counts().reset_index()
+        st.write(count)
+    
     # Stats of number 1 song
-    top_data = data.sort_values('Spotify Streams', ascending=False)
+    # top_data = data.sort_values('Spotify Streams', ascending=False)
 
-    values = pd.to_numeric(top_data[streamings].iloc[0].astype(str).str.replace(',', ''), errors='coerce').fillna(0).astype(int)
+    # values = pd.to_numeric(top_data[streamings].iloc[0].astype(str).str.replace(',', ''), errors='coerce').fillna(0).astype(int)
 
-    fig, ax = plt.subplots()
-    ax.pie(values, labels=streamings, autopct='%1.1f%%', startangle=90)
-    ax.axis('equal') 
+    # fig, ax = plt.subplots()
+    # ax.pie(values, labels=streamings, autopct='%1.1f%%', startangle=90)
+    # ax.axis('equal') 
 
-    st.pyplot(fig)
+    # st.pyplot(fig)
