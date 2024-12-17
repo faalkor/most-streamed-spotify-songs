@@ -30,12 +30,14 @@ def aroundStreamings(data):
     streamings = ['Spotify Streams', 'YouTube Views', 'TikTok Posts', 'Apple Music Playlist Count', 'AirPlay Spins']
     
     # Quantidade de músicas por streaming
-    for streaming in streamings:
-        df = data[streaming].count().reset_index()
-        st.write(df)
-        #df.columns = ['Streaming', 'Count']
-        #count = df[streaming].value_counts().reset_index()
-        #st.write(count)
+    df = pd.DataFrame({"Streaming": streamings})
+    count = df["Streaming"].value_counts()
+
+    count.plot(kind="bar", color="skyblue", title="Quantidade de acessos por streaming")
+    plt.xlabel("Streaming")
+    plt.ylabel("Quantidade")
+    plt.show()
+
     
     # Stats of number 1 song
     # top_data = data.sort_values('Spotify Streams', ascending=False)
