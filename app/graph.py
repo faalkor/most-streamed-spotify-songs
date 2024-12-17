@@ -38,10 +38,10 @@ def aroundStreamings(data):
     data_clean = data.dropna(subset=streamings)
     
     # Quantidade de músicas por streaming
-    count = {}
     for streaming in streamings:
-        # data[streaming] = pd.to_numeric(data[streaming], errors='coerce')
-        count[streaming] = data_clean[streaming].sum()
+        data_clean[streaming] = pd.to_numeric(data_clean[streaming], errors='coerce')
+
+    count = {streaming: data_clean[streaming].sum() for streaming in streamings}
     st.write(count)
 
     fig, ax = plt.subplots()
