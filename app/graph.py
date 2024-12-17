@@ -33,9 +33,9 @@ def aroundStreamings(data):
     for streaming in streamings:
         df = data[streaming].count().reset_index()
         st.write(df)
-        df.columns = ['Streaming', 'Count']
-        count = df[streaming].value_counts().reset_index()
-        st.write(count)
+        #df.columns = ['Streaming', 'Count']
+        #count = df[streaming].value_counts().reset_index()
+        #st.write(count)
     
     # Stats of number 1 song
     # top_data = data.sort_values('Spotify Streams', ascending=False)
