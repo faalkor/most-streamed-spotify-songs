@@ -38,22 +38,11 @@ def aroundStreamings(data):
     for streaming in streamings:
         count[streaming] = data[streaming].notna().sum()
 
-    plt.bar(count.keys(), count.values(), color="skyblue")
-    plt.title("Quantidade de acessos por streaming")
-    plt.xlabel("Streaming")
-    plt.ylabel("Quantidade")
+    fig, ax = plt.subplots()
+    ax.bar(count.keys(), count.values(), color="skyblue")
+    ax.set_title("Quantidade de acessos por streaming")
+    ax.set_xlabel("Streaming")
+    ax.set_ylabel("Quantidade")
     plt.xticks(rotation=45)
-    plt.tight_layout()
-    plt.show()
 
-    
-    # Stats of number 1 song
-    # top_data = data.sort_values('Spotify Streams', ascending=False)
-
-    # values = pd.to_numeric(top_data[streamings].iloc[0].astype(str).str.replace(',', ''), errors='coerce').fillna(0).astype(int)
-
-    # fig, ax = plt.subplots()
-    # ax.pie(values, labels=streamings, autopct='%1.1f%%', startangle=90)
-    # ax.axis('equal') 
-
-    # st.pyplot(fig)
+    st.pyplot(fig)
