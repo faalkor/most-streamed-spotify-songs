@@ -38,6 +38,7 @@ st.markdown("## Artistas e Frequência de Aparição")
 
 # Contar a quantidade de vezes que cada artista aparece
 artist_count = df['Artist'].value_counts().reset_index()
+artist_count.index = range(1, len(artist_count) + 1)
 artist_count.columns = ['Artista', 'Quantidade de Aparição']
 
 # Exibir a tabela no dashboard
@@ -60,13 +61,13 @@ with col1:
     year_count = df['Year'].value_counts().reset_index()
     year_count.columns = ['Year', 'Count']
 
-    # Gráfico de pizza no Streamlit
-    st.markdown("## Distribuição de Músicas por Ano")
+    # Gráfico de colunas no Streamlit
+    st.markdown("## Lançamentos de Músicas por Ano")
     fig, ax = plt.subplots()
     ax.bar(year_count['Year'], year_count['Count'], color='skyblue')
     ax.set_xlabel("Ano")
     ax.set_ylabel("Quantidade de Músicas")
-    ax.set_title("Quantidade de Músicas por Ano")
+    ax.set_title("Lançamentos de Músicas por Ano")
     plt.xticks(rotation=45)  # Rotaciona os anos para melhorar a visualização
     st.pyplot(fig)
 
