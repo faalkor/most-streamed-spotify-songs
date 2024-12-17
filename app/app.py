@@ -60,6 +60,7 @@ with col1:
     # Contar a quantidade de músicas por ano
     year_count = df['Year'].value_counts().reset_index()
     year_count.columns = ['Year', 'Count']
+    year_count = year_count.sort_values('Year', ascending=False)
 
     # Gráfico de colunas no Streamlit
     st.markdown("## Lançamentos de Músicas por Ano")
@@ -69,13 +70,8 @@ with col1:
     ax.set_ylabel("Quantidade de Músicas")
     ax.set_title("Lançamentos de Músicas por Ano")
     plt.xticks(rotation=45)  # Rotaciona os anos para melhorar a visualização
-    st.pyplot(fig)
+    st.pyplot(fig)   
 
-    #df['Year'] = pd.to_numeric(df['Year'].str.replace(',', ''), errors='coerce').fillna(0).astype(int)
-    #df.sort_values('Year', ascending=False)
-    st.write(df)
-    st.write(df['Year'].sort_values('Year', ascending=False))
-    
 
 with col2:
     st.dataframe(year_count)
