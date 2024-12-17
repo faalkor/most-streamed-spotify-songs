@@ -34,11 +34,14 @@ def aroundStreamings(data):
         st.write(f"Algumas colunas não existem no dataset: {set(streamings) - set(data.columns)}")
         return
     
+    # Ignorar registro com streaming sem dados
+    data_clean = data.dropna(subset=streamings)
+    
     # Quantidade de músicas por streaming
     count = {}
     for streaming in streamings:
-        data[streaming] = pd.to_numeric(data[streaming], errors='coerce')
-        count[streaming] = data[streaming].dropna().sum()
+        # data[streaming] = pd.to_numeric(data[streaming], errors='coerce')
+        count[streaming] = data_clean[streaming].sum()
     st.write(count)
 
     fig, ax = plt.subplots()
