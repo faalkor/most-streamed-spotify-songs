@@ -33,10 +33,43 @@ def aroundStreamings(data):
     if not set(streamings).issubset(data.columns):
         st.write(f"Algumas colunas não existem no dataset: {set(streamings) - set(data.columns)}")
         return
-    
-    # Ignorar registro com streaming sem dados
+
+    # Exibir os primeiros dados nas colunas de streaming para entender o que há nos dados
+    st.write("Exibição das primeiras linhas de dados nas colunas de streaming antes da conversão:")
+    st.write(data[streamings])
+
+    # Converte para numérico e ignora registros com dados ausentes
+    data[streamings] = data[streamings].apply(pd.to_numeric, errors='coerce')
+
+    # Verifica se há NaN após a conversão
+    st.write("Após conversão para numérico, valores ausentes (NaN) nas colunas de streaming:")
+    st.write(data[streamings].isna().sum())
+
+    # Substitui NaN por 0 (ou outro valor desejado)
+    data[streamings] = data[streamings].fillna(0)
+
+    # Agora converte para int64
+    data[streamings] = data[streamings].astype('int64')
+
+    # Verificar tipos após a conversão
+    st.write("Tipos de dados nas colunas após conversão para int64:")
+    st.write(data[streamings].dtypes)
+
+    # Remover registros com NaN
     data_clean = data.dropna(subset=streamings)
-    
+
+    # Verificar se o dataset ficou vazio após o drop
+    if data_clean.empty:
+        st.write("Nenhum dado válido após a remoção dos valores ausentes nas colunas de streaming.")
+    else:
+        st.write("Dataset após a limpeza de dados ausentes:")
+        st.write(data_clean)
+
+
+    # Caso não haja dados após o drop, verificar o motivo
+    if data_clean.empty:
+        st.write("Nenhum dado válido após a remoção dos valores ausentes nas colunas de streaming.")
+
     # Quantidade de músicas por streaming
     for streaming in streamings:
         data_clean[streaming] = pd.to_numeric(data_clean[streaming], errors='coerce').fillna(0)

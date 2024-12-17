@@ -19,7 +19,7 @@ with open(dataset, 'rb') as f:
     result = chardet.detect(f.read())
 
 
-# Table
+# Ler dataset
 st.markdown("## Dados")
 df = pd.read_csv(dataset, encoding=result['encoding'])
 st.write(df)
