@@ -37,7 +37,7 @@ def aroundStreamings(data):
     # Quantidade de músicas por streaming
     count = {}
     for streaming in streamings:
-        count[streaming] = data[streaming].notna().sum()
+        count[streaming] = data[streaming].dropna().sum()
     st.write(count)
 
     fig, ax = plt.subplots()
