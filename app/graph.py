@@ -56,11 +56,16 @@ def aroundStreamings(data):
     st.write(totals)
 
     # Criar gráfico de barras
-    fig, ax = plt.subplots(figsize=(8, 6))
+    fig, ax = plt.subplots(figsize=(10, 6))
     ax.bar(totals.keys(), totals.values(), color="skyblue")
+
+    # Personalizar o gráfico
     ax.set_title("Comparação de Visualizações por Plataforma")
     ax.set_xlabel("Plataformas")
-    ax.set_ylabel("Total de Visualizações")
+    ax.set_ylabel("Total de Visualizações (Escala Logarítmica)")
+
+    # Configurar escala logarítmica no eixo y
+    ax.set_yscale('log')
     plt.xticks(rotation=45)
 
     # Exibir o gráfico no Streamlit
