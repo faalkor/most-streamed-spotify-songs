@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
+import numpy as np
 
 def graph(data):                                                                                           
     # Remove dataset commas and convert to int
@@ -25,67 +26,45 @@ def graph(data):
     
     st.write(top_data)
 
-
 def aroundStreamings(data):
+    # Colunas de interesse
     streamings = ['Spotify Streams', 'YouTube Views', 'TikTok Posts', 'Shazam Counts', 'AirPlay Spins']
 
-    # Verificar se os streamings existem no dataset
-    if not set(streamings).issubset(data.columns):
-        st.write(f"Algumas colunas não existem no dataset: {set(streamings) - set(data.columns)}")
+    # Verificar se as colunas existem no dataset
+    missing_columns = [col for col in streamings if col not in data.columns]
+    if missing_columns:
+        st.write(f"As seguintes colunas estão ausentes no dataset: {', '.join(missing_columns)}")
         return
 
-    # Exibir os primeiros dados nas colunas de streaming para entender o que há nos dados
-    st.write("Exibição das primeiras linhas de dados nas colunas de streaming antes da conversão:")
-    st.write(data[streamings])
+    # Função para remover separadores de milhar e lidar com NaN
+    def clean_numbers(value):
+        if pd.isna(value):  # Verifica se o valor é NaN
+            return 0  # Substitui NaN por 0
+        if isinstance(value, str):
+            return int(value.replace(',', '').replace('.', '').strip())
+        return int(value)
 
-    # Converte para numérico e ignora registros com dados ausentes
-    data[streamings] = data[streamings].apply(pd.to_numeric, errors='coerce')
+    # Limpeza e conversão de dados
+    for col in streamings:
+        data[col] = data[col].apply(clean_numbers)
 
-    # Verifica se há NaN após a conversão
-    st.write("Após conversão para numérico, valores ausentes (NaN) nas colunas de streaming:")
-    st.write(data[streamings].isna().sum())
+    # Somar valores individuais de cada coluna
+    totals = {streaming: int(data[streaming].sum()) for streaming in streamings}
 
-    # Substitui NaN por 0 (ou outro valor desejado)
-    data[streamings] = data[streamings].fillna(0)
+    # Exibir os resultados no dashboard
+    st.markdown("### Total de Visualizações por Plataforma de Streaming")
+    st.write(totals)
 
-    # Agora converte para int64
-    data[streamings] = data[streamings].astype('int64')
-
-    # Verificar tipos após a conversão
-    st.write("Tipos de dados nas colunas após conversão para int64:")
-    st.write(data[streamings].dtypes)
-
-    # Remover registros com NaN
-    data_clean = data.dropna(subset=streamings)
-
-    # Verificar se o dataset ficou vazio após o drop
-    if data_clean.empty:
-        st.write("Nenhum dado válido após a remoção dos valores ausentes nas colunas de streaming.")
-    else:
-        st.write("Dataset após a limpeza de dados ausentes:")
-        st.write(data_clean)
-
-
-    # Caso não haja dados após o drop, verificar o motivo
-    if data_clean.empty:
-        st.write("Nenhum dado válido após a remoção dos valores ausentes nas colunas de streaming.")
-
-    # Quantidade de músicas por streaming
-    for streaming in streamings:
-        data_clean[streaming] = pd.to_numeric(data_clean[streaming], errors='coerce').fillna(0)
-
-    count = {streaming: data_clean[streaming].sum() for streaming in streamings}
-    st.write(count)
-
-    fig, ax = plt.subplots()
-    ax.bar(count.keys(), count.values(), color="skyblue")
-    ax.set_title("Quantidade de acessos por streaming")
-    ax.set_xlabel("Streaming")
-    ax.set_ylabel("Quantidade")
+    # Criar gráfico de barras
+    fig, ax = plt.subplots(figsize=(8, 6))
+    ax.bar(totals.keys(), totals.values(), color="skyblue")
+    ax.set_title("Comparação de Visualizações por Plataforma")
+    ax.set_xlabel("Plataformas")
+    ax.set_ylabel("Total de Visualizações")
     plt.xticks(rotation=45)
 
+    # Exibir o gráfico no Streamlit
     st.pyplot(fig)
-
 
 def artistCount(data):
     artist_count = data['Artist'].value_counts().reset_index()
